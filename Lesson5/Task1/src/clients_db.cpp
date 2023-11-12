@@ -132,7 +132,9 @@ namespace databases
 	}
 
 
-	pqxx::result ClientsDB::findClient(const ClientInfoFields field, const std::string& search_value)
+	pqxx::result ClientsDB::findClient(
+		const ClientInfoFields field, 
+		const std::string& search_value) const
 	{
 		try
 		{
@@ -222,7 +224,7 @@ namespace databases
 	}
 
 
-	bool ClientsDB::isClientIDExist(const std::string& id)
+	bool ClientsDB::isClientIDExist(const std::string& id) const
 	{
 		try
 		{
@@ -294,7 +296,7 @@ namespace databases
 	}
 
 
-	void ClientsDB::isEmailValid(const std::string& email)
+	void ClientsDB::isEmailValid(const std::string& email) const
 	{
 		if (!isEmailFormatCorrect(email))
 			throw std::invalid_argument(
@@ -305,7 +307,7 @@ namespace databases
 	}
 
 
-	bool ClientsDB::isEmailExist(const std::string& email)
+	bool ClientsDB::isEmailExist(const std::string& email) const
 	{
 		try
 		{
@@ -329,14 +331,14 @@ namespace databases
 	}
 
 
-	bool ClientsDB::isEmailFormatCorrect(const std::string& email)
+	bool ClientsDB::isEmailFormatCorrect(const std::string& email) const
 	{
 		const std::regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
 		return std::regex_match(email, pattern);
 	}
 
 
-	void ClientsDB::isPhoneNumberValid(const std::string& phone_number)
+	void ClientsDB::isPhoneNumberValid(const std::string& phone_number) const
 	{
 		if (!isPhoneNumberFormatCorrect(phone_number))
 			throw std::invalid_argument(
@@ -347,7 +349,7 @@ namespace databases
 	}
 
 
-	bool ClientsDB::isPhoneNumberExist(const std::string& phone_number)
+	bool ClientsDB::isPhoneNumberExist(const std::string& phone_number) const
 	{
 		try
 		{
@@ -372,14 +374,14 @@ namespace databases
 	}
 
 
-	bool ClientsDB::isPhoneNumberFormatCorrect(const std::string& phone_number)
+	bool ClientsDB::isPhoneNumberFormatCorrect(const std::string& phone_number) const
 	{
 		const std::regex pattern("[+][0-9]{11}");
 		return std::regex_match(phone_number, pattern);
 	}
 
 	
-	pqxx::result ClientsDB::getClientsInfo()
+	pqxx::result ClientsDB::getClientsInfo() const
 	{
 		try
 		{

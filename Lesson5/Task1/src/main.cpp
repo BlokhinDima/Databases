@@ -46,7 +46,7 @@ void printClientsInfo(databases::ClientsDB& clients_db)
 }
 
 
-void printQueryResult(pqxx::result result)
+void printQueryResult(pqxx::result& result)
 {
 	for (const auto& row : result)
 	{
